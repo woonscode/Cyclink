@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="css/chat.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/dark_mode.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+    <div id="app">
+        <div id="top-bar" class="sticky-top">
+            <nav class="navbar navbar-expand-md navbar-light d-flex ps-4">
+                <div class="container-fluid">
+                    <a class="navbar-brand fw-bold" href="dashboard.html"><img src="images/cyclink_logo.jpg"
+                            style="width: 50px; height: 50px; border-radius: 50%; border: blueviolet solid 2px; margin-right: 10px;">&nbsp;Cyclink</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item my-auto">
+                                <a id="navbar_home" onmouseover="mouseover_style(this.id)"
+                                    onmouseout="mouseout_style(this.id)" class="nav-link my-auto mx-2"
+                                    href="dashboard.html">Home</a>
+                            </li>
+                            <li class="nav-item my-auto mx-2">
+                                <a id="navbar_route" onmouseover="mouseover_style(this.id)"
+                                    onmouseout="mouseout_style(this.id)" class="nav-link" href="map.html">Map</a>
+                            </li>
+                            <li class="nav-item my-auto mx-2">
+                                <a id="navbar_chat" onmouseover="mouseover_style(this.id)"
+                                    onmouseout="mouseout_style(this.id)" class="nav-link active"
+                                    href="chat.html">Chat</a>
+                            </li>
+                            <li class="nav-item my-auto mx-2">
+                                <a id="navbar_request" onmouseover="mouseover_style(this.id)"
+                                    onmouseout="mouseout_style(this.id)" class="nav-link position-relative"
+                                    href="friend-requests.html">Friend Requests
+                                    <span v-if="requests.length>0"
+                                        class="position-absolute top-0 end-0 badge rounded-pill bg-danger ms-2">
+                                        {{requests.length}}
+                                        <span class="visually-hidden">unread messages</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="nav-item my-auto mx-2">
+                                <a id="navbar_findfriends" onmouseover="mouseover_style(this.id)"
+                                    onmouseout="mouseout_style(this.id)" class="nav-link" href="find-friends.html">Find
+                                    Friends</a>
+                            </li>
+                            <li class="nav-item dropdown align-items my-auto mx-2" href="login-page.html">
+                                <a onmouseover="mouseover_style(this.id)" onmouseout="mouseout_style(this.id)"
+                                    class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img class="rounded-pill border bg-light" id="profile_pic" :src="photo"
+                                        alt="profile" height="40"> {{ name }}
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="profile.html">My Profile</a></li>
+                                    <li><a class="dropdown-item" href="settings.html">Settings</a></li>
+
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item g_id_signout" @click="logout"
+                                            style="cursor: pointer;">Logout</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div v-if="haveGrp || haveFriends">
+            <div class="container-fluid position-relative align-self-stretch">
+                <div class="row align-self-stretch">
+                    <!-- Side bar -->
+                    <div class="col-sm-12 col-md-3 d-none d-sm-none d-md-block" id="side_bar" style="margin-top: auto;">
+                        <div id="collapse_chat" class="m-0">
+                            <div id="search" class="p-2">
+                                <input class="form-control my-3" type="search" placeholder="Search Chats"
+                                    v-model="search">
+                            </div>
+                            <div id="chats" style="position: relative; margin-bottom: 150px;">
+                                <!-- Group Chats -->
+                                <div v-for="group of groups">
+                                    <div v-if="group.group.groupName.includes(search)" :id="group.key"
+                                        @click="changeCurrent(group.key)" onclick="show_chat()"
+                                        class="p-3 border-top border-bottom d-flex position-relative"
+                                        style="cursor: pointer;">
+                                        <img :src="group.group.image" style="height: 50px;">
+                                        <p class="ms-3 mb-0" style="font-size: small;"><b>{{group.group.groupName
+                                                }}</b><br>
+                                            {{lastMessage(group.key)}}
+                                        </p>
+                                        <div class="position-absolute top-0 end-0 mt-2" style="font-size: smaller;">
+                                            <span>{{lastMessageTime(group.group.groupID)}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Friends DM -->
+                                <div v-for="friend of friends">
+                                    <div v-if="users[friend].firstname.includes(search) || users[friend].lastname.includes(search)"
+                                        :id="friend" @click="changeCurrentFriend(friend)" onclick="show_chat()"
+                                        class="p-3 border-top border-bottom d-flex position-relative"
+                                        style="cursor: pointer;">
+                                        <img :src="users[friend].photo" style="height: 50px;"
+                                            class="rounded-pill border bg-light">
+                                        <p class="ms-3 mb-0" style="font-size: small;"><b>{{ users[friend].firstname }}
+                                                {{ users[friend].lastname }}</b><br>
+                                            {{lastMessage(friend)}}
+                                        </p>
+                                        <div class="position-absolute top-0 end-0 mt-2" style="font-size: smaller;">
+                                            <span>{{lastMessageTime(friend)}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="footer" class="text-center d-flex justify-content-center pt-2">
+                                <p>Copyright © Singapore Management University<br>All rights reserved.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Messages -->
+                    <div id="messages" class="col-sm-12 col-md-9 position-relative" style="margin-left:auto;">
+
+                        <div class="container-fluid p-0">
+                            <!-- Chat Header -->
+                            <div id="chat_header" class="row bg-light mt-auto" style="position:sticky; top:72px">
+                                <div class="col d-flex align-items-center my-2">
+                                    <button id="btn_back" onclick="show_chat_list()" class="btn d-sm-block d-md-none"
+                                        type="button">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </button>
+                                    <div v-if="type == 'group'" class="d-flex">
+                                        <img :src="current_group.image" height="50" class="mx-3">
+                                        <div>
+                                            <h5>{{current_group.groupName}}</h5>
+                                            <p class="m-0">{{current_group.members.length}} Members</p>
+                                        </div>
+                                    </div>
+                                    <div v-if="type == 'group'" class="ms-auto">
+                                        <div class="dropdown">
+                                            <a class="text-dark me-3" href="#" role="button" id="dropdownMenuLink"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                              <li><a data-bs-toggle="modal" href="#add" class="dropdown-item">Add Friends</a></li>
+                                              <li><a data-bs-toggle="modal" href="#leave" class="dropdown-item">Leave Group</a></li>
+                                            </ul>
+                                          </div>
+                                    </div>
+                                    <div v-else class="d-flex align-items-center">
+                                        <img :src="users[selected_friend].photo" height="50"
+                                            class="mx-3 rounded-pill border bg-light">
+                                        <div>
+                                            <h5>{{ users[selected_friend].firstname }} {{
+                                                users[selected_friend].lastname }}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Chat Messages -->
+                            <div class="row changedText" style="position: relative; z-index: -1;">
+                                <div class="col">
+                                    <div id="chat_content">
+                                        <div id="alert"></div>
+                                        <div v-for="message of messages">
+                                            <!-- Group chat -->
+                                            <div v-if= "type != 'friend'">
+                                                <div v-if = "message.userID != current_userId && message.chatID == current_groupId" class="friends_msg d-flex my-3" style="align-items: center;">
+                                                    <img :src="getImageURL(message.userID)" height="30" style="align-items: center;">
+                                                    <p class="border p-2" style="margin: 5px; border-radius: 20px 20px 20px 0px;">{{message.message}}</p>
+                                                </div>
+                                    
+                                                <div v-else-if = "message.userID == current_userId && message.chatID == current_groupId" class="d-flex my-3 justify-content-end" style="align-items: center;">
+                                                    <p class="my_msg border p-2" style="margin: 5px; border-radius: 20px 20px 0px 20px;">{{message.message}}</p>
+                                                </div>
+                                            </div>
+
+                                            <!-- DM -->
+                                            <div v-else>
+                                                <div v-if = "message.userID == selected_friend && (message.chatID == current_userId || message.chatID == selected_friend)" class="friends_msg d-flex my-3" style="align-items: center;">
+                                                    <p class="border p-2" style="margin: 5px; border-radius: 20px 20px 20px 0px;">{{message.message}}</p>
+                                                </div>
+                                    
+                                                <div v-else-if = "message.userID == current_userId && (message.chatID == current_userId || message.chatID == selected_friend)" class="d-flex my-3 justify-content-end" style="align-items: center;">
+                                                    <p class="my_msg border p-2" style="margin: 5px; border-radius: 20px 20px 0px 20px;">{{message.message}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="container-fluid p-0 m-0 bg-white" id="write_message">
+                                <div class="row p-0 m-0">
+                                    <div class="col m-3">
+                                        <div class="input-group mb-3">
+                                            <input v-on:keyup.enter="addMessage" id="message" type="text" class="form-control"
+                                                placeholder="Write a message..." aria-label="message"
+                                                aria-describedby="button-addon2" v-model="new_message">
+                                            <button v-on:click="addMessage" id="btn_send" class="btn btn-outline-secondary"
+                                                type="button">Send</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                            
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div v-else>
+            <div class="container text-center mt-5">
+                <img src="images/sad-icon.png" height="200">
+                <h2 class="display-6">Aw Man...</h2>
+                <p class="text-secondary" style="font-size: 20px;">Seems like you haven't joined a group or have friends to dm yet</p>
+                <div class="row align-items-center">
+                    <div class="col-5 text-end">
+                        <a href="find-friends.html"><button type="button" class="btn btn-warning">Click here to Find Friends</button></a>
+                    </div>
+                    <div class="col-2">
+                        <span class="text-secondary" style="font-size: 20px;">or</span>
+                    </div>
+                    <div class="col-5 text-start">
+                        <a href="profile.html"><button type="button" class="createGrp-btn btn btn-primary">Here to Create a Group</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="add" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">
+                            Add Friends</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div v-if= "nonMembers.length > 0">
+                            <form>
+                                Members: 
+                                <div v-for="friend of nonMembers" class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" :id="friend" :value="friend" v-model="selectedMembers">
+                                <label class="form-check-label" :for="friend">{{ users[friend].firstname }} {{ users[friend].lastname }}</label>
+                                </div>
+                            </form>                       
+                        </div>
+                        <div v-else>
+                            No friends to add.
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" @click="addFriends()" data-bs-dismiss="modal">Add Friends</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="leave" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">
+                            Leave Group</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to leave this group?
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger" @click="leaveGroup()" data-bs-dismiss="modal">Leave Group</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-storage.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/dark_mode.js"></script>
+    <script src="js/navbar.js"></script>
+
+</body>
+
+</html>

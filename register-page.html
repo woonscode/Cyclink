@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- font StyleSheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <!-- Register page CSS -->
+    <link rel="stylesheet" href="css/register-page.css">
+
+    <title>Register Page</title>
+</head>
+
+<body>
+
+    <div id="top-bar" class="sticky-top">
+        <nav class="navbar navbar-expand-sm navbar-light d-flex px-4">
+            <div class="container-fluid">
+
+                <a class="navbar-brand" href="index.html"><img src="images/cyclink_logo.jpg"
+                        style="width: 50px; height: 50px; border-radius: 50%; border: blueviolet solid 2px; margin-right: 10px;">&nbsp;Cyclink</a>
+                <div class="justify-content-end">
+                    <ul class="navbar-nav">
+                        <li class="nav-item mx-auto">
+                            <a class="nav-link" href="index.html"><button type="button" class="btn-close"></button></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div id="register-main" class="container-fluid changedText">
+        <div class="row">
+            <div class="col-sm-6 p-0">
+                <img class="left-img float-start regi_img" src="images/register-page-cycling.jfif">
+            </div>
+            <div class="form col-sm-6 px-5">
+                <div class="container-fluid mx-auto">
+                    <h1 class="display-6 mt-4">Getting Started</h1>
+                    <h6 class="fw-normal mb-4 text-muted" style="font-size: smaller;"><a href="login-page.html">Already
+                            have an account?</a></h6>
+
+                    <!-- Register Status Message -->
+                    <div v-show="valid == false" id="status" class="alert alert-danger">{{status_message}}</div>
+
+                    <form>
+                        <div class="row">
+                            <!-- First Name -->
+                            <div class="col-sm-6 mb-3">
+                                <label class="text-muted changedText" for="fname">First Name</label>
+                                <input class="px-2" v-model="firstname" type="text" id="fname" name="fname" required>
+                            </div>
+                            <!-- Last Name -->
+                            <div class="col-sm-6 mb-3">
+                                <label class="text-muted changedText" for="lname">Last Name</label>
+                                <input class="px-2" v-model="lastname" type="text" id="lname" name="lname" required>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <label class="text-muted changedText" for="email">Email Address</label>
+                        <input class="px-2 mb-3" v-model="email" type="email" id="email" name="email" required>
+
+                        <!-- Username -->
+                        <label class="text-muted changedText" for="username">Username</label>
+                        <input class="px-2 mb-3" v-model="userId" type="text" id="username" name="username" required>
+
+                        <div class="row">
+                            <!-- Years of Cycling Experience -->
+                            <div class="col-sm-6">
+                                <label class="text-muted changedText" for="years_exp">Years of Cycling</label>
+                                <select class="years_option px-2 mb-3" name="years_exp" id="years_exp"
+                                    v-model="experience" required>
+                                    <option value="1">&lt;1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">>5</option>
+                                </select>
+                            </div>
+                            <!-- Age -->
+                            <div class="col-sm-6">
+                                <label class="text-muted changedText" for="age">Age</label>
+                                <input class="px-2 mb-3" v-model="age" type="number" id="age" name="age" required>
+                            </div>
+                        </div>
+
+                        <!-- Password -->
+                        <label class="text-muted changedText" for="password">Password</label>
+                        <input class="px-2 mb-3" v-model="password" type="password" id="password" name="password"
+                            required><i class="far fa-eye" id="togglePassword"
+                            style="margin-left: -30px; cursor: pointer;"></i>
+
+                        <!-- Confirm Password -->
+                        <label class="text-muted changedText" for="cfm_pwd">Confirm Password</label>
+                        <input class="px-2 mb-5" v-model="cfm_password" type="password" id="cfm_pwd" name="cfm_pwd"
+                            required><i class="far fa-eye" id="toggleCfmPassword"
+                            style="margin-left: -30px; cursor: pointer;"></i>
+
+                        <!-- Register btn -->
+                        <input @click="register" type="button" class="btn btn-outline-primary register-btn mb-3"
+                            value="Register">
+                    </form>
+
+                    <div class="text-center">
+                        <p id="tnc">By signing up, you agree to Cyclink’s <a href="#">Terms of Conditions</a> and <a
+                                href="#">Privacy Policy</a>.</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Script tags -->
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <!-- axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"
+        integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- register-page js -->
+    <script src="js/register-page.js"></script>
+</body>
+
+</html>

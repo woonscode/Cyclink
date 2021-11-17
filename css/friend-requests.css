@@ -1,0 +1,42 @@
+.navbar{
+    background-color: #BFBFF3;
+}
+
+#login_btn, #get_started {
+    color: #6C5CE7; 
+    border: 1px solid #6C5CE7;
+}
+
+.nav-link{
+    font-weight: bold;
+    color: black !important;
+}
+.active {
+    background-color: #a59bf7;
+    border-radius: 50rem !important;
+    padding: 0px 15px !important;
+}
+
+#footer {
+    bottom: 0;
+    height: 2em;
+    left: 0;
+    position: relative;
+    width:100%;
+    font-size: smaller;
+}
+
+@media (max-width:767px) {
+    .buttons {justify-content: start !important; margin-top: 30px;}
+    .details, .photo {justify-content: center;}
+    
+}
+
+@media (max-width:575px) {
+    .buttons {justify-content: center !important; margin-top: 30px;}
+    .details {text-align: center;}
+}
+
+#alert {
+    z-index: -2
+}

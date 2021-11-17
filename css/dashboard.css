@@ -1,0 +1,154 @@
+html, body{
+    margin: 0;
+    padding: 0;
+}
+
+#nav-image {
+    height: 40px;
+}
+
+.safety_div {
+    position: relative;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    overflow: hidden;
+
+    background-color: #ff7878;
+    color: white;
+    padding: 6px;
+}
+
+.safety_div .topbar {
+    position: relative;
+    width: 50%;
+    overflow: hidden;
+}
+
+.safety_div div:nth-child(1) p {
+    -webkit-text-stroke: 1px;
+    -webkit-text-stroke-color: #6C5CE7;
+    -webkit-text-fill-color: transparent;
+}
+
+.safety_div div p {
+    position: absolute;
+    white-space: nowrap;
+    font-size: 12px;
+    animation: animate 30s linear infinite;
+}
+
+@keyframes animate {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-30%);
+    }
+}
+
+.topbar p {
+    margin: 0;
+    margin: 0 0.5em 
+}
+
+.news-btn {
+    border: 1px solid #899CFF;
+    background-color: #899CFF;
+    color: white;
+}
+
+.news-btn:hover {
+    background-color: #6C5CE7;
+    color: white;
+}
+
+#footer {
+    font-size: smaller;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+#loader {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+@media (max-width:767px) {
+    #loader svg{transform: scale(0.7); width: 375px;}
+    #loader {width: auto;}
+}
+
+body > svg {
+    display: block;
+    width: 80vw;
+    max-width: 500px;
+    height: auto;
+}
+
+#bicycle {
+    offset-path: path("M 0 0 l 200 -200 a 50 50 0 0 1 50 0 l 100 100 a 50 50 0 0 0 50 0 l 125 -125");
+    offset-distance: 0%;
+    animation: offsetDistance 4s cubic-bezier(0.645, 0.045, 0.355, 1) infinite alternate;
+}
+@keyframes offsetDistance {
+    to {
+        offset-distance: 100%;
+    }
+}
+h1 span {
+    position: relative;
+    top: 20px;
+    display: inline-block;
+    animation: bounce .3s ease infinite alternate;
+    font-family: 'Titan One'cursive;
+    font-size: 30px;
+    
+}
+
+h1 span:nth-child(2) {
+    animation-delay: .1s;
+}
+
+h1 span:nth-child(3) {
+    animation-delay: .2s;
+}
+
+h1 span:nth-child(4) {
+    animation-delay: .3s;
+}
+
+h1 span:nth-child(5) {
+    animation-delay: .4s;
+}
+
+h1 span:nth-child(6) {
+    animation-delay: .5s;
+}
+
+h1 span:nth-child(7) {
+    animation-delay: .6s;
+}
+
+h1 span:nth-child(8) {
+    animation-delay: .7s;
+}
+h1 span:nth-child(9) {
+    animation-delay: .8s;
+}
+h1 span:nth-child(10) {
+    animation-delay: .9s;
+}
+
+@keyframes bounce {
+    100% {
+        top: -20px;
+        
+    }
+}

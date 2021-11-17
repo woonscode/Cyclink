@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/faq.css">
+    <link rel="stylesheet" href="./css/dark_mode.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+</head>
+
+<body>
+    <!-- Nav Bar -->
+    <div id="main">
+        <div id="top-bar" class="sticky-top">
+            <nav class="navbar navbar-expand-md navbar-light d-flex ps-4">
+                <div class="container-fluid">
+                    <img src="images/cyclink_logo.jpg"
+                        style="width: 50px; height: 50px; border-radius: 50%; border: blueviolet solid 2px; margin-right: 10px;">
+                    <a class="navbar-brand fw-bold" href="dashboard.html">&nbsp;Cyclink</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item my-auto">
+                                <a id="navbar_home" onmouseover="mouseover_style(this.id)"
+                                    onmouseout="mouseout_style(this.id)" class="nav-link my-auto mx-2"
+                                    href="dashboard.html">Home</a>
+                            </li>
+                            <li class="nav-item my-auto mx-2">
+                                <a id="navbar_route" onmouseover="mouseover_style(this.id)"
+                                    onmouseout="mouseout_style(this.id)" class="nav-link" href="map.html">Map</a>
+                            </li>
+                            <li class="nav-item my-auto mx-2">
+                                <a id="navbar_chat" onmouseover="mouseover_style(this.id)"
+                                    onmouseout="mouseout_style(this.id)" class="nav-link" href="chat.html">Chat</a>
+                            </li>
+                            <li class="nav-item my-auto mx-2">
+                                <a id="navbar_request" onmouseover="mouseover_style(this.id)"
+                                    onmouseout="mouseout_style(this.id)" class="nav-link position-relative"
+                                    href="friend-requests.html">Friend Requests
+                                    <span v-if="requests.length>0"
+                                        class="position-absolute top-0 end-0 badge rounded-pill bg-danger ms-2">
+                                        {{requests.length}}
+                                        <span class="visually-hidden">unread messages</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="nav-item my-auto mx-2">
+                                <a id="navbar_findfriends" onmouseover="mouseover_style(this.id)"
+                                    onmouseout="mouseout_style(this.id)" class="nav-link" href="find-friends.html">Find
+                                    Friends</a>
+                            </li>
+                            <li class="nav-item dropdown align-items my-auto mx-2">
+                                <a onmouseover="mouseover_style(this.id)" onmouseout="mouseout_style(this.id)"
+                                    class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img id="nav-image" :src="photo" class="rounded-pill border bg-light" alt="profile"
+                                        style="height:40px"> {{name}}
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="profile.html">My Profile</a></li>
+                                    <li><a class="dropdown-item" href="settings.html">Settings</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item g_id_signout" @click="logout"
+                                            style="cursor: pointer;">Logout</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Header -->
+        <div class="container changedText">
+            <div class="faq nameHeading">
+                <h1 style="text-align: center;">
+                    FAQ
+                </h1>
+            </div>
+
+            <!-- FAQ 1-->
+
+            <div class="accordion mt-3 mb-4" id="profile_accordion">
+                <a id="faq1"></a>
+                <div class="accordion-item mt-3">
+                    <h2 class="accordion-header" id="saved_routes_header">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#faq1" aria-expanded="false" aria-controls="faq1">
+                            <div>&nbsp Will my location be tracked after I key in all of my personal details and
+                                turn on my
+                                location service?</div>
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse" aria-labelledby="faq1" data-bs-parent="#faq1">
+                        <div class="accordion-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">No, it will not. We will only use your location
+                                    service to pinpoint accurately your location
+                                    while using the route planner.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 2-->
+
+            <div class="accordion mt-3 mb-4" id="profile_accordion">
+                <a id="faq2"></a>
+                <div class="accordion-item mt-3">
+                    <h2 class="accordion-header" id="saved_routes_header">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                            <div>&nbsp How do I change my profile picture?</div>
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" aria-labelledby="faq2" data-bs-parent="#faq2">
+                        <div class="accordion-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"> Proceed to the My Profile page, on the top of right corner
+                                    of your profile card, there is an edit button.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 3 -->
+
+            <div class="accordion mt-3 mb-4" id="profile_accordion">
+                <a id="faq3"></a>
+                <div class="accordion-item mt-3">
+                    <h2 class="accordion-header" id="saved_routes_header">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                            <div>&nbsp Am I able to search for friends without keying in the number of years of
+                                experience I have
+                                for cycling?</div>
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faq3">
+                        <div class="accordion-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Yes, even without a full profile, you can still search for
+                                    cycling groups or friends that are on Cyclink.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 4-->
+
+            <div class="accordion mt-3 mb-4" id="profile_accordion">
+                <a id="faq4"></a>
+                <div class="accordion-item mt-3">
+                    <h2 class="accordion-header" id="saved_routes_header">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                            <div>&nbsp How do I search for the list of friends that I have?</div>
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" aria-labelledby="faq4" data-bs-parent="#faq4">
+                        <div class="accordion-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Proceed to My Profile Page, at the bottom you can check the
+                                    list of friends that you have.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 5-->
+
+            <div class="accordion mt-3 mb-4" id="profile_accordion">
+                <a id="faq5"></a>
+                <div class="accordion-item mt-3">
+                    <h2 class="accordion-header" id="saved_routes_header">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">
+                            <div>&nbsp How do I change the emoji skintones that I receive in the chat?</div>
+                        </button>
+                    </h2>
+                    <div id="faq5" class="accordion-collapse collapse" aria-labelledby="faq5" data-bs-parent="#faq5">
+                        <div class="accordion-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Proceed to the Settings Page, you can check the skintone of
+                                    the emoji that is to your preference.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 6-->
+
+            <div class="accordion mt-3 mb-4" id="profile_accordion">
+                <a id="faq6"></a>
+                <div class="accordion-item mt-3">
+                    <h2 class="accordion-header" id="saved_routes_header">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#faq6" aria-expanded="false" aria-controls="faq6">
+                            <div>&nbsp Are my friends able to view all the details in my profile?</div>
+                        </button>
+                    </h2>
+                    <div id="faq6" class="accordion-collapse collapse" aria-labelledby="faq6" data-bs-parent="#faq6">
+                        <div class="accordion-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Yes, they will be able to see the basic information on your
+                                    profile card. The details of what the public can view is your profile picture, name,
+                                    gender, age, username, email, phone number and years of experience.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 7-->
+
+            <div class="accordion mt-3 mb-4" id="profile_accordion">
+                <a id="faq7"></a>
+                <div class="accordion-item mt-3">
+                    <h2 class="accordion-header" id="saved_routes_header">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#faq7" aria-expanded="false" aria-controls="faq7">
+                            <div>&nbsp How do I see the number of cycling group chats I have in a quick glance?
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="faq7" class="accordion-collapse collapse" aria-labelledby="faq7" data-bs-parent="#faq7">
+                        <div class="accordion-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Proceed to My Profile Page, at the bottom you can check the
+                                    list of groups that you have joined.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 8-->
+
+            <div class="accordion mt-3 mb-4" id="profile_accordion">
+                <a id="faq8"></a>
+                <div class="accordion-item mt-3">
+                    <h2 class="accordion-header" id="saved_routes_header">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#faq8" aria-expanded="false" aria-controls="faq8">
+                            <div>&nbsp Will I be able to save my old routes and use it again in the future?
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="faq8" class="accordion-collapse collapse" aria-labelledby="faq8" data-bs-parent="#faq8">
+                        <div class="accordion-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Yes you will be able to. After saving your previous route as
+                                    a favourite, the system will store that route.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 9-->
+
+            <div class="accordion mt-3 mb-4" id="profile_accordion">
+                <a id="faq9"></a>
+                <div class="accordion-item mt-3">
+                    <h2 class="accordion-header" id="saved_routes_header">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#faq9" aria-expanded="false" aria-controls="faq9">
+                            <div>&nbsp Am I able to search for rest points while I plan my route using the route
+                                planner?</div>
+                        </button>
+                    </h2>
+                    <div id="faq9" class="accordion-collapse collapse" aria-labelledby="faq9" data-bs-parent="#faq9">
+                        <div class="accordion-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Yes, when viewing the route planner, rest stops are included
+                                    in it which allows you to include it as part of your route.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 10 -->
+
+            <div class="accordion mt-3 mb-4" id="profile_accordion">
+                <a id="faq10"></a>
+                <div class="accordion-item mt-3">
+                    <h2 class="accordion-header" id="saved_routes_header">
+                        <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#faq10" aria-expanded="false" aria-controls="faq10">
+                            <div>&nbsp Is it possible to search for my friends using their last name?</div>
+                        </button>
+                    </h2>
+                    <div id="faq10" class="accordion-collapse collapse" aria-labelledby="faq10" data-bs-parent="#faq10">
+                        <div class="accordion-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">No, it will not be possible. The safest would be the first
+                                    name as searching by the last name has been proven to be very vague and inaccurate.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <a href="settings.html" class=" btn btn-warning" role="button"
+                    style="margin-top: 10px; margin-bottom: 10px;">Back to Settings</a>
+            </div>
+
+            <!-- Copyright text -->
+            <div class="row">
+                <div id="footer" class="text-center changedText">
+                    <p>Copyright ©️ Singapore Management University<br>All rights reserved.</p>
+                </div>
+            </div>
+            <!-- End of content div-->
+        </div>
+        <!-- </div> -->
+
+        <!-- Bootstrap CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-storage.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+        <script src="https://unpkg.com/vue@next"></script>
+        <script src="js/settings.js"></script>
+        <script src="js/dark_mode.js"></script>
+        <script src="js/navbar.js"></script>
+
+
+</body>
+
+</html>

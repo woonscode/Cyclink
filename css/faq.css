@@ -1,0 +1,103 @@
+.nameHeading{
+    font-size: x-large;
+    font-weight: bolder;
+    border-bottom: 2px solid;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  .radioSize {
+  width: 20px;
+  height: 20px;
+  }
+  
+  .textboxColor {
+  float: left;
+  margin: 10px;
+  background-color: grey;
+  }
+  
+  .cacheButton{
+  text-align: center;
+  }
+  
+  
+  
+  /* The side navigation menu */
+  .sidebar {
+      margin: 0;
+      padding: 0;
+      width: 300px;
+      background-color: bisque;
+      position: fixed;
+      height: 100%;
+      overflow: auto;
+      font-size: larger;
+  }
+  
+    /* Sidebar links */
+  .sidebar a {
+      display: block;
+      color: black;
+      padding: 16px;
+      text-decoration: none;
+  }
+  
+    /* Active/current link */
+  .sidebar a.active {
+      background-color: #cca95e;
+      color: black;
+  }
+  
+    /* Links on mouse-over */
+  .sidebar a:hover:not(.active) {
+      background-color: rgb(233, 179, 80);
+      color: black;
+      
+  }
+  
+    /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+  div.content {
+      margin-left: 300px;
+      padding: 1px 16px;
+      height: 1000px;
+      font-size: larger;
+  }
+  
+    /* On screens that are less than 700px wide, make the sidebar into a topbar */
+  @media screen and (max-width: 700px) {
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+      }
+      .sidebar a {float: left;}
+      div.content {margin-left: 0;}
+  }
+  
+    /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+  @media screen and (max-width: 400px) {
+      .sidebar a {
+        text-align: center;
+        float: none;
+      }
+  }
+  
+  #footer {
+    font-size: smaller;
+    position: relative;
+    bottom: 0;
+  }
+  
+  .navbar{
+    background-color: #BFBFF3;
+  }
+  
+  .nav-link{
+    font-weight: bold;
+    color: black !important;
+  }
+
+.faqAns{
+    border: solid blue 1px;
+    padding: 20px;
+}

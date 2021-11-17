@@ -1,0 +1,36 @@
+
+#map {
+  height: 100%;
+  position: relative;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.map-container{
+  width: 100%;
+  height: auto;
+  position: absolute;
+}
+
+#directions-panel{
+  margin-left: 1%;
+  right: 80%;
+  top:10%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  text-align: center;
+  position: sticky;
+  width: 100%;
+  height: 50%;
+  overflow: auto; 
+}
+
+.navbar{
+  background-color: #BFBFF3;
+}

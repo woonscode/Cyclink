@@ -1,0 +1,49 @@
+.accordion-button {
+    background-color: #a59bf7;
+}
+.accordion-button:not(.collapsed) {
+    color:rgb(224, 221, 221);
+    background-color: #6C5CE7;
+}
+.accordion-images {
+    height: 30px;
+}
+.accordion-body, .list-group-item{
+    background-color: #fffbff;
+}
+
+#edit-icon {
+    height: 30px;
+    width: 30px;
+}
+#nav-image {
+    height: 40px;
+}
+.reveal {
+    height: 180px;
+    width: 41%;
+}
+#profile-photo {
+    width: 180px;
+    height: auto
+}
+@media (max-width:991px) {
+    #profile-photo,#details {display: block; margin: auto;}
+    #profile-details {width: 100% !important;}
+}
+@media (max-width:767px) {
+    #details {text-align: center;}
+    .leave_div {justify-content: end;}
+    
+}
+
+#create_group_btn {
+    border: 1px #a1a1ff solid;
+    color: #a1a1ff;
+    background-color: white;
+}
+
+#create_group_btn:hover {
+    background-color: #a1a1ff;
+    color: white;
+}

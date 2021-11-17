@@ -1,0 +1,49 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.navbar{
+    background-color: #BFBFF3;
+}
+
+#login_btn, #get_started {
+    color: #6C5CE7; 
+    border: 1px solid #6C5CE7;
+}
+
+#middle_div {
+    background-image: url('../images/landing-page-cycling.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 90%;
+    width: 100%;
+    height: 60%;
+}
+
+@media (max-width:767px) {
+    #middle_div{height: 50%;}
+}
+
+@media (max-width:575px) {
+    #middle_div{height: 60%;}
+    #get_started{padding: 5px 20px !important; margin-top: 10px !important;}
+}
+
+@media (max-width: 348px){
+    #middle_div{height: 70%;}
+}
+
+#get_started{
+    padding: 10px 50px;
+    margin-top: 50px;
+}
+
+#bottom-div{
+    margin: 50px;
+}
+
+#footer {
+    font-size: smaller;
+}

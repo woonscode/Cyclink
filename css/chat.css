@@ -1,0 +1,73 @@
+#login_btn, #get_started {
+    color: #6C5CE7; 
+    border: 1px solid #6C5CE7;
+}
+
+.createGrp-btn {
+    background-color: #6C5CE7;
+    color: white;
+}
+
+.createGrp-btn:hover {
+    border: 1px solid #899CFF;
+    background-color: #899CFF;
+    color: white;
+}
+
+#footer {
+    font-size: smaller;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 25%;
+    background-color: #fffbff;
+} 
+
+#write_message {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 75%;
+
+}
+
+@media (max-width:767px) {
+    #write_message, #footer{width: 100% !important;}
+    #chat_header{top: 56px !important;}
+    
+}
+
+@media (min-width:768px) {
+    #side_bar, #messages {display: block !important;}
+    #btn_back {display: none !important;}
+}
+
+#side_bar {
+    position: fixed;
+    left: 0;
+    top: auto;
+    background-color: #fffbff;
+    overflow: scroll;
+    height: 100%;
+}
+#search {
+    position: sticky;
+    top: 0;
+    background-color: #fffbff;
+    z-index: 1;
+}
+
+#chat_content{
+    overflow: auto;
+    margin-bottom: 70px;
+    
+}
+
+.my_msg {
+    background-color: #6C5CE7;
+    color: white;
+}
+
+#nav-image {
+    height: 40px;
+}

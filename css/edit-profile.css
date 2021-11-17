@@ -1,0 +1,36 @@
+#profile-photo {
+    height: 180px;
+}
+#profile-edit-div {
+    position: relative
+}
+#edit-icon {
+    position: absolute;
+    bottom: 7%;
+    right: 40%;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+}
+#image-upload {
+    display: none;
+}
+#save-btn {
+    background-color: #a59bf7;
+    border: 1px solid #a59bf7;
+}
+#save-btn:hover {
+    background-color: #6C5CE7;
+}
+.form-label {
+    color: gray
+}
+.form-control {
+    border-color: black;
+}
+.form-select {
+    border-color: black;
+}
+#nav-image {
+    height: 40px;
+}

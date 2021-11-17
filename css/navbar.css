@@ -1,0 +1,26 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.navbar{
+    background-color: #BFBFF3;
+}
+
+.nav-link{
+    font-weight: bold;
+    color: black !important;
+}
+
+a.active {
+    background-color: #a59bf7;
+    border-radius: 50rem !important;
+    padding: 0px 15px !important;
+}
+
+#footer {
+    padding: 0px 20px;
+    font-size: smaller;
+    bottom: 0;
+}

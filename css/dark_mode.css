@@ -1,0 +1,28 @@
+body {
+    --text-color: #222;
+    --bkg-color: #fff;
+  }
+  body.dark-theme {
+    --text-color: #eee;
+    --bkg-color: #535151e8;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    /* defaults to dark theme */
+    body{
+      --text-color: #eee;
+      --bkg-color: #535151e8;
+    }
+    body.light-theme {
+      --text-color: #222;
+      --bkg-color: #fff;
+    }
+  }
+
+  body{
+    background: var(--bkg-color);
+  }
+
+  .changedText{
+    color: var(--text-color);
+  }
