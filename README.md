@@ -22,10 +22,10 @@
 | # | Name | SMU Email Address | Roles and Responsibilities |
 | ----------- | ----------- | ----------- | ----------- |
 | 1 | Yong Woon Hao | whyong.2020@smu.edu.sg | <ul><li>Business requirements</li><li>Profile page</li><li>Edit Profile page</li><li>GitHub</li><li>Solution architecture diagram</li><li>Google Firebase</li><li>AWS cloud deployment</li><li>Business process diagram</li><li>Readme</li><li>Presentation slides and content</li></ul>|
-| 2 | Teoh Chin Hao Jordan | jordan.teoh.2020@smu.edu.sg | <ul><li>Settings Page</li><li>FAQ Page</li><li>Find Friends Page</li><li>Dark Mode Implementation</li><li>Application Logo</li><li>Figma</li></ul>
-| 3 | Kong Andrea Yin | andreakong.2020@smu.edu.sg | <ul><li>Google Maps + functions</li><li>Friends recommender system</li><li>Show recommended friends on find-friends.html</li><li>Bootstrap grid for cards</li><li>Show routes on profile page</li><li>Redirect to map, with auto filled in address</li><li>Website screenshots on README</li></ul>
-| 4 | Teo Rui Xin | ruixin.teo.2020@smu.edu.sg | <ul><li>Login Page</li><li>Google Login</li><li>Forgot Password Page</li><li>Register Page</li><li>Dashboard Page</li><li>Responsive Design of website</li><li>Worked on Aesthetics/Design for different pages</li><li>Figma</li><li>Presentation content</li><li>Edit Video for Presentation and upload to YouTube</li></ul>|
-| 5 | Genevieve Ally Tai JiaHui | jiahui.tai.2020@smu.edu.sg | <ul><li>Index page</li><li>Groups and Friends on Profile page</li><li>Edit profile validations</li><li>Chat page</li><li>Friend Requests page</li><li>Add friends on Find Friends page</li><li>Preloading screen on Dashboard page</li><li>Figma</li><li>Presentation content</li></ul>
+| 2 | Jordan | | <ul><li>Settings Page</li><li>FAQ Page</li><li>Find Friends Page</li><li>Dark Mode Implementation</li><li>Application Logo</li><li>Figma</li></ul>
+| 3 | Andrea | | <ul><li>Google Maps + functions</li><li>Friends recommender system</li><li>Show recommended friends on find-friends.html</li><li>Bootstrap grid for cards</li><li>Show routes on profile page</li><li>Redirect to map, with auto filled in address</li><li>Website screenshots on README</li></ul>
+| 4 | Rui Xin | | <ul><li>Login Page</li><li>Google Login</li><li>Forgot Password Page</li><li>Register Page</li><li>Dashboard Page</li><li>Responsive Design of website</li><li>Worked on Aesthetics/Design for different pages</li><li>Figma</li><li>Presentation content</li><li>Edit Video for Presentation and upload to YouTube</li></ul>|
+| 5 | Genevieve | | <ul><li>Index page</li><li>Groups and Friends on Profile page</li><li>Edit profile validations</li><li>Chat page</li><li>Friend Requests page</li><li>Add friends on Find Friends page</li><li>Preloading screen on Dashboard page</li><li>Figma</li><li>Presentation content</li></ul>
 
 ## :bicyclist: Project Overview :bicyclist:
 ### Background
